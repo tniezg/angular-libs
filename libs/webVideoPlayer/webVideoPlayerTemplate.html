@@ -1,0 +1,36 @@
+<div class="web-video-player">
+	<div>
+		<div>
+			<video></video>
+		</div>
+	</div>
+	<div>
+		<div class="web-video-player-controls">
+			<div>
+				<div ng-click="toggleVideo()" ng-class="{playing:isPlaying()}" class="web-video-player-toggle-video"></div>
+				<div class="web-video-player-timeline">
+					<div>
+						<!-- filler so the bar can be measured in terms of width -->
+						<div>
+							<div class="web-video-player-cue-list">
+								<!-- end cue ng-repeat -->
+								<section ng-repeat="cue in cuePoints">
+									<section ng-switch="cue">
+										<div ng-click="seek(cue)" ng-switch-when="0" class="web-video-player-cue web-video-player-cue-first"></div>
+										<div ng-click="seek(cue)" ng-switch-default ng-style="{left:cue*100+'%'}" class="web-video-player-cue"></div>
+									</section>
+								</section>
+							</div>
+							<div ng-style="{width:progressPercent+'%'}"></div>
+						</div>
+					</div>
+				</div>
+				<div class="web-video-player-volume">
+					<div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
