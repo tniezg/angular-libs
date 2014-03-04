@@ -1,5 +1,6 @@
 #AngularJS directives and services
 
+##Contents
 * [AutomaticResize](#automatic_resize)
 * [DelayedInput](#delayed_input)
 * [Disqus](#disqus)
@@ -35,7 +36,7 @@ A directive that extends ngModel to synchronize the view with the view-model but
 
 ##<a id="disqus"></a>Disqus
 
-Allows embedding of [Disqus](http://disqus.com) dinamically, multiple times after the page has loaded.
+Allows embedding of [Disqus](http://disqus.com) dinamically, multiple times after the page has loaded. Required Disqus embed script as an AMD dependency under the name `disqusEmbed`.
 
 ###Add a global variable before disqus gets initialized:
 ```html
