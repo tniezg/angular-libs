@@ -1,0 +1,14 @@
+{
+	"name": "AngularExtensions",
+	"version": "0.0.1",
+	"ignore": [
+		"bower.json",
+		"grunt",
+		"examples",
+		".gitignore"
+	],
+	"main": "app",
+	"dependencies": {
+		"jquery": ">=2.1.0"
+	}
+}
