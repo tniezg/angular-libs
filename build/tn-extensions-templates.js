@@ -1,13 +1,16 @@
-angular.module('tn.extensions', ['tn.extensions.actionPopup']);
+angular.module('tn.extensions', [
+	'tn.extensions.templates',
+	'tn.extensions.actionPopup'
+]);
 angular.module('tn.extensions.actionPopup', [])
 	.directive('tnActionPopup', ['$parse',
 		function($parse) {
 			return {
 				replace: true,
 				transclude: true,
-				templateUrl: 'templates/actionPopup/actionPopupTemplate.html',
+				templateUrl: 'template/actionPopup/actionPopupTemplate.html',
 				scope: {
-					visible: '=actionPopup'
+					visible: '=tnActionPopup'
 				},
 				controller: function($scope, $element, $attrs) {
 					var elementObj = $($element),
@@ -44,3 +47,11 @@ angular.module('tn.extensions.actionPopup', [])
 			}
 		}
 	]);
+angular.module('tn.extensions.templates', ['template/actionPopup/actionPopupTemplate.html']);
+
+angular.module("template/actionPopup/actionPopupTemplate.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/actionPopup/actionPopupTemplate.html",
+    "<div class=\"tn-action-popup-window\">\n" +
+    "    <div class=\"tn-action-popup-window-content\" ng-transclude></div>\n" +
+    "</div>");
+}]);

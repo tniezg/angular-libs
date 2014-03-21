@@ -1,1 +1,4 @@
-angular.module('tn.extensions', ['tn.extensions.actionPopup']);
+angular.module('tn.extensions', [
+	'tn.extensions.templates',
+	'tn.extensions.actionPopup'
+]);

@@ -3,7 +3,8 @@ module.exports = function(grunt) {
 		buildPath = '../build',
 		scriptsPath = '../scripts',
 		cssPath = sourcePath + '/css',
-		destinationCssPath = cssPath + '/layout.css';
+		destinationCssPath = cssPath + '/layout.css',
+		templatesPath = '../template';
 
 	grunt.initConfig({
 		less: {
@@ -22,12 +23,15 @@ module.exports = function(grunt) {
 				files: [
 					sourcePath + '/**/*',
 					scriptsPath + '/**/*',
+					templatesPath + '/**/*',
 					'!**/*.css',
 					'!' + sourcePath + '/bower_components/**/*',
 				],
 				tasks: [
 					'less:development',
-					'concat:build'
+					'html2js:build',
+					'concat:build',
+					'concat:buildWithTemplates'
 				],
 				options: {
 					nospawn: true,
@@ -51,8 +55,25 @@ module.exports = function(grunt) {
 					scriptsPath + '/module.js',
 					scriptsPath + '/actionPopup/actionPopup.js'
 				],
-				dest: buildPath + '/module.js'
+				dest: buildPath + '/tn-extensions.js'
+			},
+			buildWithTemplates: {
+				src: [
+					buildPath + '/tn-extensions.js',
+					buildPath + '/tn-extensions-templates-only.js'
+				],
+				dest: buildPath + '/tn-extensions-templates.js'
 			}
+		},
+		html2js: {
+			options: {
+				base: '../',
+				module: 'tn.extensions.templates'
+			},
+			build: {
+				src: [templatesPath + '/**/*.html'],
+				dest: buildPath + '/tn-extensions-templates-only.js'
+			},
 		}
 	});
 
@@ -60,6 +81,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-html2js');
 
 	grunt.registerTask('build', [
 		'concat:build'

@@ -1,3 +1,7 @@
+angular.module('tn.extensions', [
+	'tn.extensions.templates',
+	'tn.extensions.actionPopup'
+]);
 angular.module('tn.extensions.actionPopup', [])
 	.directive('tnActionPopup', ['$parse',
 		function($parse) {

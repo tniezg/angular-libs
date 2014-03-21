@@ -4,7 +4,7 @@ requirejs.config({
 	paths: {
 		'jquery': '../bower_components/jquery/dist/jquery',
 		'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
-		'angular_libs': '../../build/module',
+		'angular_libs': '../../build/tn-extensions-templates',
 		'angular': '../bower_components/angular/angular',
 		// plugin
 		'text': '../bower_components/requirejs-text/text'
