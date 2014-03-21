@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 	var sourcePath = '../scripts',
-		buildPath = '../buildPath';
+		buildPath = '../build';
 
 	grunt.initConfig({
 		bump: {
@@ -14,7 +14,9 @@ module.exports = function(grunt) {
 		concat: {
 			// separator:';'
 			build: {
-				src: [sourcePath + '/module.js', ],
+				src: [sourcePath + '/module.js', sourcePath +
+					'/actionPopup/actionPopup.js'
+				],
 				dest: buildPath + '/module.js'
 			}
 		}
@@ -24,6 +26,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	grunt.registerTask('build', [
-		'less:development'
+		'concat:build'
 	]);
 };
