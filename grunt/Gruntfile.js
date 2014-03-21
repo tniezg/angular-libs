@@ -14,8 +14,9 @@ module.exports = function(grunt) {
 		concat: {
 			// separator:';'
 			build: {
-				src: [sourcePath + '/module.js', sourcePath +
-					'/actionPopup/actionPopup.js'
+				src: [
+					sourcePath + '/module.js',
+					sourcePath + '/actionPopup/actionPopup.js'
 				],
 				dest: buildPath + '/module.js'
 			}

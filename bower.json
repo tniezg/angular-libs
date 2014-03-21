@@ -5,6 +5,7 @@
 		"bower.json",
 		"grunt",
 		"examples",
+		"scripts",
 		".gitignore"
 	],
 	"main": "app",
