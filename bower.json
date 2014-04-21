@@ -6,7 +6,8 @@
 		"grunt",
 		"examples",
 		"scripts",
-		".gitignore"
+		".gitignore",
+		"app"
 	],
 	"main": "app",
 	"dependencies": {
