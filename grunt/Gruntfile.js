@@ -24,8 +24,8 @@ module.exports = function(grunt) {
 					sourcePath + '/**/*',
 					scriptsPath + '/**/*',
 					templatesPath + '/**/*',
-					'!**/*.css',
-					'!' + sourcePath + '/bower_components/**/*',
+					'!' + sourcePath + '/bower_components',
+					'!' + sourcePath + '/**/*.css'
 				],
 				tasks: [
 					'less:development',
@@ -34,7 +34,6 @@ module.exports = function(grunt) {
 					'concat:buildWithTemplates'
 				],
 				options: {
-					nospawn: true,
 					interrupt: true,
 					livereload: true
 				}
@@ -53,7 +52,8 @@ module.exports = function(grunt) {
 			build: {
 				src: [
 					scriptsPath + '/module.js',
-					scriptsPath + '/actionPopup/actionPopup.js'
+					scriptsPath + '/actionPopup/actionPopup.js',
+					scriptsPath + '/directClick/directClick.js'
 				],
 				dest: buildPath + '/tn-extensions.js'
 			},

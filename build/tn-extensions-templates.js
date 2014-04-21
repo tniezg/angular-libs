@@ -1,6 +1,7 @@
 angular.module('tn.extensions', [
 	'tn.extensions.templates',
-	'tn.extensions.actionPopup'
+	'tn.extensions.actionPopup',
+	'tn.extensions.directClick'
 ]);
 angular.module('tn.extensions.actionPopup', [])
 	.directive('tnActionPopup', ['$parse',
@@ -43,6 +44,17 @@ angular.module('tn.extensions.actionPopup', [])
 					$scope.$on('$destroy', function() {
 						elementObj.off('click', onClick);
 					});
+				}
+			}
+		}
+	]);
+angular.module('tn.extensions.directClick', [])
+	.directive('tnDirectClick', [
+
+		function() {
+			return {
+				controller: function($scope, $element, $attrs) {
+					alert('direct click instantiated!');
 				}
 			}
 		}
