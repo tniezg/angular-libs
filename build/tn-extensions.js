@@ -14,8 +14,8 @@ angular.module('tn.extensions.actionPopup', [])
 					visible: '=tnActionPopup'
 				},
 				controller: function($scope, $element, $attrs) {
-					var elementObj = $($element),
-						elementContent = $('.action-popup-window-content');
+					var elementObj = angular.element($element),
+						elementContent = angular.element('.action-popup-window-content');
 
 					function onClick(event) {
 						$scope.$apply(function() {
@@ -50,11 +50,18 @@ angular.module('tn.extensions.actionPopup', [])
 	]);
 angular.module('tn.extensions.directClick', [])
 	.directive('tnDirectClick', [
-
-		function() {
+		'$parse',
+		function($parse) {
 			return {
 				controller: function($scope, $element, $attrs) {
-					alert('direct click instantiated!');
+					$element.on('click', function(event) {
+						$scope.$apply(function() {
+
+							if (event.currentTarget === event.target) {
+								$parse($attrs.tnDirectClick)($scope);
+							}
+						});
+					});
 				}
 			}
 		}
