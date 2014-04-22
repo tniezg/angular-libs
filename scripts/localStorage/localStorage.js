@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tn.extensions.localStorage', [])
 	.factory('tnLocalStorage', [
 

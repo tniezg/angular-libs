@@ -3,13 +3,15 @@ define([
 	'controller/baseController',
 	'angular_libs',
 	'controller/directClickExampleController',
-	'controller/localStorageExampleController'
+	'controller/localStorageExampleController',
+	'controller/persistentConfigExampleController'
 ], function(
 	angular,
 	baseController,
 	angular_libs,
 	directClickExampleController,
-	localStorageExampleController
+	localStorageExampleController,
+	persistentConfigExampleController
 ) {
 	var module = angular.module('siteModule', ['tn.extensions']);
 
@@ -19,6 +21,8 @@ define([
 		directClickExampleController);
 	module.controller('localStorageExampleController',
 		localStorageExampleController);
+	module.controller('persistentConfigExampleController',
+		persistentConfigExampleController);
 
 	return module;
 });

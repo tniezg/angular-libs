@@ -13,6 +13,7 @@
       <button ng-click="showPanel('directClick')">directive: tn-direct-click</button>
       <button ng-click="showPanel('actionPopup')">directive: tn-action-popup</button>
       <button ng-click="showPanel('localStorage')">service: tnLocalStorage</button>
+      <button ng-click="showPanel('persistentConfig')">service: tnPersistentConfig</button>
     </header>
     <div ng-switch="activePanelIdentifier">
       <div ng-include="getPanelPath(activePanelIdentifier)"></div>

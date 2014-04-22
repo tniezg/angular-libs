@@ -54,7 +54,8 @@ module.exports = function(grunt) {
 					scriptsPath + '/module.js',
 					scriptsPath + '/actionPopup/actionPopup.js',
 					scriptsPath + '/directClick/directClick.js',
-					scriptsPath + '/localStorage/localStorage.js'
+					scriptsPath + '/localStorage/localStorage.js',
+					scriptsPath + '/persistentConfig/persistentConfig.js'
 				],
 				dest: buildPath + '/tn-extensions.js'
 			},
