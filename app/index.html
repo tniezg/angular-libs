@@ -10,16 +10,12 @@
   <body>
     <header>
       <h1>Module name: tn.extensions</h1>
-      <button ng-click="showPanel('directClick')">tn-direct-click</button>
-      <button ng-click="showPanel('actionPopup')">tn-action-popup</button>
+      <button ng-click="showPanel('directClick')">directive: tn-direct-click</button>
+      <button ng-click="showPanel('actionPopup')">directive: tn-action-popup</button>
+      <button ng-click="showPanel('localStorage')">service: tnLocalStorage</button>
     </header>
     <div ng-switch="activePanelIdentifier">
       <div ng-include="getPanelPath(activePanelIdentifier)"></div>
     </div>
-    <!-- direct click example -->
-    <!-- action popup example -->
-    <!-- <div tn-action-popup="true">
-      popup content
-    </div> -->
   </body>
 </html>

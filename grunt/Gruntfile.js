@@ -53,7 +53,8 @@ module.exports = function(grunt) {
 				src: [
 					scriptsPath + '/module.js',
 					scriptsPath + '/actionPopup/actionPopup.js',
-					scriptsPath + '/directClick/directClick.js'
+					scriptsPath + '/directClick/directClick.js',
+					scriptsPath + '/localStorage/localStorage.js'
 				],
 				dest: buildPath + '/tn-extensions.js'
 			},
