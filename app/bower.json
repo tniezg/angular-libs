@@ -8,6 +8,7 @@
 		"jquery": "2.1.0",
 		"requirejs-text": "2.0.10",
 		"less_libs": "https://github.com/tniezg/less_libs.git",
-		"angular-ui-router": "latest"
+		"font-awesome": "~4.0.3",
+		"angular-ui-router": "~0.2.10"
 	}
 }

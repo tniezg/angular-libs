@@ -1,9 +1,15 @@
+@import (less) "../bower_components/less-elements/elements.less";
+
+*{
+    .box-sizing;
+}
+
 body{
-    background: grey; margin:0;
+    background: #fff; margin:0; font-family: Helvetica, Arial; font-weight: 200;
 }
 
 header{
-    background: lightgrey; padding: 20px; border-bottom: 1px solid black;
+    margin: 10px 0; padding: 21px;
 }
 
 button{
@@ -14,9 +20,33 @@ button{
 }
 
 h1{
-    font-size: 2em; font-family: Helvetica, Arial; font-weight: 200; margin: 0; margin-bottom: 10px;
+    font-size: 2em; margin: 0; margin-bottom: 10px; font-family: Helvetica, Arial; font-weight: 200;
+}
+
+h2{
+    font-size: 1.3em; margin: 0; margin-bottom: 10px; font-family: Helvetica, Arial; font-weight: 200;
+}
+
+.page{
+    width: 960px; margin:auto;
 }
 
 .panel{
-    padding: 10px;
+    padding: 20px; background: #f0f0f0; .rounded(); border: 1px solid darken(#f0f0f0, 5%);
+    &+.panel{
+        margin-top: 10px;
+    }
+    h3{
+        border-bottom: 1px solid lightgrey; padding-bottom: 10px 0; margin: 5px 0;
+        a{
+            text-decoration: none; font-weight: 200; font-size: 2em;
+        }
+    }
+    h4{
+        margin: 10px 0;
+    }
+}
+
+a{
+    color: inherit;
 }

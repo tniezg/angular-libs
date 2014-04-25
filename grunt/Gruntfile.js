@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 					sourcePath + '/**/*',
 					scriptsPath + '/**/*',
 					templatesPath + '/**/*',
-					'!' + sourcePath + '/bower_components',
+					'!' + sourcePath + '/bower_components/**/*',
 					'!' + sourcePath + '/**/*.css'
 				],
 				tasks: [
