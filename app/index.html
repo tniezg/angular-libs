@@ -17,7 +17,7 @@
                 class="panel" 
                 ng-controller="directClickExampleController" 
                 ng-init="valueIncreasedWithDirectClick=0">
-                <h3><a href="#directClick">directive: tn-direct-click</a></h3>
+                <h3><i class="fa fa-link"></i><a href="#directClick">directive: tn-direct-click</a></h3>
                 <div tn-direct-click="valueIncreasedWithDirectClick=valueIncreasedWithDirectClick+1" 
                     style="background:green;color:white;display:inline-block;padding:10px;cursor:pointer">
                     Click me directly
@@ -27,7 +27,7 @@
             </div>
             <div id="actionPopup" 
                 class="panel">
-                <h3><a href="#directClick">directive: tn-action-popup</a></h3>
+                <h3><i class="fa fa-link"></i><a href="#actionPopup">directive: tn-action-popup</a></h3>
                 <div tn-action-popup="true">
                     ACTION
                 </div>
@@ -35,7 +35,7 @@
             <div id="localStorage"
                 class="panel" 
                 ng-controller="localStorageExampleController">
-                <h3><a href="#directClick">service: tnLocalStorage</a></h3>
+                <h3><i class="fa fa-link"></i><a href="#localStorage">service: tnLocalStorage</a></h3>
                 <button ng-click="put()">Put to localStorage: name='Foo'</button>
                 <button ng-click="remove()">Remove 'name' from localStorage</button>
                 <br><br>
@@ -45,7 +45,7 @@
             <div id="persistentConfig"
                 class="panel" 
                 ng-controller="persistentConfigExampleController">
-                <h3><a href="#directClick">service: tnPersistentConfig</a></h3>
+                <h3><i class="fa fa-link"></i><a href="#persistentConfig">service: tnPersistentConfig</a></h3>
                 <pre>{"name":"<input ng-model="options.name" type="text">", "surname": "<input ng-model="options.surname" type="text">"}</pre>
                 <br><br>
                 <h4>Storage contents: {{options.configObject}}</h4>
