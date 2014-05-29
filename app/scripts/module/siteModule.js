@@ -4,7 +4,8 @@ define([
 	'angular_libs',
 	'controller/directClickExampleController',
 	'controller/localStorageExampleController',
-	'controller/persistentConfigExampleController'
+	'controller/persistentConfigExampleController',
+	'controller/focusMeController'
 ], function(
 	angular,
 	baseController,

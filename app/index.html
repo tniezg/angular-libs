@@ -13,6 +13,13 @@
                 <h1>Tiny Angular extensions</h1>
                 <h2>Module name: tn.extensions</h2>
             </header>
+            <div id="focusMe"
+                class="panel"
+                ng-controller="focusMeController">
+                <h3><i class="fa fa-link"></i><a href="#focusMe">service: tnFocusMe</a></h3>
+                <button ng-click="focused=true">Focus the input field</button>
+                <input type="text" placeholder="Input focused when button clicked">
+            </div>
             <div id="directClick"
                 class="panel" 
                 ng-controller="directClickExampleController" 
