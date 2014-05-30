@@ -1,10 +1,21 @@
+var path = require('path');
+
 module.exports = function(grunt) {
-	var sourcePath = '../app',
-		buildPath = '../build',
-		scriptsPath = '../scripts',
-		cssPath = sourcePath + '/css',
-		destinationCssPath = cssPath + '/layout.css',
-		templatesPath = '../template';
+	var sourcePath = '../app';
+	var buildPath = '../build';
+	var scriptsPath = '../scripts';
+	var cssPath = sourcePath + '/css';
+	var destinationCssPath = cssPath + '/layout.css';
+	var templatesPath = '../template';
+	var directivesPath = scriptsPath + '/directives';
+	var servicesPath = scriptsPath + '/services';
+	var sourceIndex = sourcePath + '/index.html';
+	var injectorFiles = {};
+
+	injectorFiles[sourceIndex] = [
+		directivesPath + '/**/*.js',
+		servicesPath + '/**/*.js'
+	];
 
 	grunt.initConfig({
 		less: {
@@ -44,18 +55,14 @@ module.exports = function(grunt) {
 				files: ["../bower.json"],
 				commitFiles: ["-a"],
 				push: false
-				// commit: false
 			}
 		},
 		concat: {
 			// separator:';'
 			build: {
 				src: [
-					scriptsPath + '/module.js',
-					scriptsPath + '/actionPopup/actionPopup.js',
-					scriptsPath + '/directClick/directClick.js',
-					scriptsPath + '/localStorage/localStorage.js',
-					scriptsPath + '/persistentConfig/persistentConfig.js'
+					scriptsPath + '/directives/*.js',
+					scriptsPath + '/services/*.js'
 				],
 				dest: buildPath + '/tn-extensions.js'
 			},
@@ -76,14 +83,26 @@ module.exports = function(grunt) {
 				src: [templatesPath + '/**/*.html'],
 				dest: buildPath + '/tn-extensions-templates-only.js'
 			},
+		},
+		wiredep: {
+			dev: {
+				src: [
+					sourceIndex
+				],
+				cwd: sourcePath
+			}
+		},
+		injector: { //provides correct file paths but for bad reasons
+			options: {
+				addRootSlash: false,
+			},
+			dev: {
+				files: injectorFiles
+			}
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-bump');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-html2js');
+	require('load-grunt-tasks')(grunt);
 
 	grunt.registerTask('build', [
 		'concat:build'

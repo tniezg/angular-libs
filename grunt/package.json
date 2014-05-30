@@ -1,12 +1,16 @@
 {
-	"name": "project",
-	"version": "0.0.1",
-	"description": "",
-	"main": "Gruntfile.js",
-	"dependencies": {
-		"grunt": "~0.4.4",
-		"grunt-bump": "0.0.13",
-		"grunt-contrib-concat": "0.3.0",
-		"grunt-html2js": "0.2.4"
-	}
+  "name": "project",
+  "version": "0.0.1",
+  "description": "",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "~0.4.4",
+    "grunt-bump": "0.0.13",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-html2js": "0.2.4",
+    "grunt-usemin": "~2.1.1",
+    "grunt-wiredep": "~1.7.0",
+    "grunt-injector": "~0.5.2",
+    "load-grunt-tasks": "~0.4.0"
+  }
 }

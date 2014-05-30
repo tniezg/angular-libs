@@ -5,7 +5,6 @@
         <script src="http://localhost:35729/livereload.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="css/layout.css">
-        <script data-main="./scripts/app.js" src="./bower_components/requirejs/require.js"></script>
     </head>
     <body>
         <div class="page">
@@ -58,5 +57,22 @@
                 <h4>Storage contents: {{options.configObject}}</h4>
             </div>
         </div>
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/requirejs/require.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <!-- endbower -->
+        <!-- manually input paths -->
+        <script data-main="./scripts/app.js" src="./bower_components/requirejs/require.js"></script>
+        <!-- end manually input paths -->
+        <!-- injector:js -->
+        <script src="../scripts/directives/actionPopup.js"></script>
+        <script src="../scripts/directives/directClick.js"></script>
+        <script src="../scripts/directives/focusMe.js"></script>
+        <script src="../scripts/directives/imageOnLoad.js"></script>
+        <script src="../scripts/directives/persistentConfig.js"></script>
+        <script src="../scripts/services/localStorage.js"></script>
+        <!-- endinjector -->
     </body>
 </html>
