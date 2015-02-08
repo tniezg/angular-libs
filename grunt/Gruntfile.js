@@ -1,114 +1,166 @@
-var path = require('path');
-
 module.exports = function(grunt) {
-	var sourcePath = '../app';
-	var buildPath = '../build';
-	var scriptsPath = '../scripts';
-	var cssPath = sourcePath + '/css';
-	var destinationCssPath = cssPath + '/layout.css';
-	var templatesPath = '../template';
-	var directivesPath = scriptsPath + '/directives';
-	var servicesPath = scriptsPath + '/services';
-	var sourceIndex = sourcePath + '/index.html';
-	var injectorFiles = {};
+	'use strict';
 
-	injectorFiles[sourceIndex] = [
-		directivesPath + '/**/*.js',
-		servicesPath + '/**/*.js'
-	];
+	// var sourcePath = '../examples';
+	// var buildPath = '../build';
+	// var scriptsPath = '../scripts';
+	// var cssPath = sourcePath + '/css';
+	// var destinationCssPath = cssPath + '/layout.css';
+	// var templatesPath = '../template';
+	// var servicesPath = scriptsPath + '/services';
+	// var sourceIndex = sourcePath + '/index.html';
 
 	grunt.initConfig({
+		example: {
+			app: '../examples',
+		},
+		library: {
+			templates: '../template',
+			scripts: '../scripts',
+			build: '../build'
+		},
+
+
+
 		less: {
-			development: {
+			example: {
 				src: [
-					cssPath + '/layout.less'
+					'<%= example.app %>/css/layout.less'
 				],
-				dest: destinationCssPath,
+				dest: '<%= example.app %>/css/layout.css',
 				options: {
 					compress: true
 				}
 			}
 		},
 		watch: {
-			development: {
+			options: {
+				atBegin: true,
+				interrupt: true,
+				livereload: true
+			},
+			refreshOnly: {
 				files: [
-					sourcePath + '/**/*',
-					scriptsPath + '/**/*',
-					templatesPath + '/**/*',
-					'!' + sourcePath + '/bower_components/**/*',
-					'!' + sourcePath + '/**/*.css'
+					'<%= example.app %>/index.html'
+				],
+				tasks: []
+			},
+			buildLibrary: {
+
+			},
+			buildTemplates: {
+				files: [
+					'<%= library.templates %>/**/*',
 				],
 				tasks: [
-					'less:development',
-					'html2js:build',
-					'concat:build',
-					'concat:buildWithTemplates'
-				],
-				options: {
-					interrupt: true,
-					livereload: true
-				}
-			}
-		},
-		bump: {
-			options: {
-				files: ["../bower.json"],
-				commitFiles: ["-a"],
-				push: false
-			}
-		},
-		concat: {
-			// separator:';'
-			build: {
-				src: [
-					scriptsPath + '/directives/*.js',
-					scriptsPath + '/services/*.js'
-				],
-				dest: buildPath + '/tn-extensions.js'
+					'html2js:templates',
+					'uglify:build',
+					'uglify:buildWithTemplates'
+				]
 			},
-			buildWithTemplates: {
-				src: [
-					buildPath + '/tn-extensions.js',
-					buildPath + '/tn-extensions-templates-only.js'
+			buildExampleStyle: {
+				files: [
+					'<%= example.app %>/**/*.less'
 				],
-				dest: buildPath + '/tn-extensions-templates.js'
+				tasks: [
+					'less:example'
+				]
+			},
+			injectBowerScripts: {
+				files: [
+					'<%= example.app %>/bower_components/**/*.js'
+				],
+				tasks: [
+					'wiredep:example'
+				]
+			},
+			injectExampleScripts: {
+				files: [
+					'<%= example.app %>/scripts/**/*.js',
+					'<%= example.build =>/tn-extensions-full.js'
+				],
+				tasks: [
+					'injector:example'
+				]
 			}
 		},
 		html2js: {
-			options: {
-				base: '../',
-				module: 'tn.extensions.templates'
-			},
-			build: {
-				src: [templatesPath + '/**/*.html'],
-				dest: buildPath + '/tn-extensions-templates-only.js'
+			templates: {
+				options: {
+					base: '../',
+					module: 'tn.extensions.templates'
+				},
+				src: [
+					'<%= library.templates %>/**/*.html'
+				],
+				dest: '<%= library.build %>/tn-extensions-templates-only.js'
 			},
 		},
 		wiredep: {
-			dev: {
+			example: {
 				src: [
-					sourceIndex
+					'<%= example.app %>/index.html'
 				],
-				cwd: sourcePath
+				cwd: '<%= example.app %>'
 			}
 		},
-		injector: { //provides correct file paths but for bad reasons
+		injector: {
 			options: {
-				addRootSlash: false,
+				relative: true,
+				addRootSlash: false
 			},
-			dev: {
-				files: injectorFiles
+			example: {
+				files: {
+					'<%= example.app %>/index.html': [
+						'<%= library.build %>/tn-extensions-full.js',
+						'<%= example.app %>/scripts/modules/**/*.js',
+						'<%= example.app %>/scripts/controllers/**/*.js',
+						'<%= example.app %>/scripts/services/**/*.js'
+					]
+				}
+			}
+		},
+
+
+		bump: {
+			options: {
+				files: ['../bower.json'],
+				commitFiles: ['-a'],
+				push: false
+			}
+		},
+		uglify: {
+			options: {
+				sourceMap: true
+			},
+			build: {
+				src: [
+					'<%= library.scripts %>/module.js',
+					'<%= library.scripts %>/directives/*.js',
+					'<%= library.scripts %>/services/*.js'
+				],
+				dest: '<%= library.build %>/tn-extensions-no-templates.js'
+			},
+			// all paths provided for source map to work
+			buildWithTemplates: {
+				src: [
+					'<%= library.scripts %>/module.js',
+					'<%= library.scripts %>/directives/*.js',
+					'<%= library.scripts %>/services/*.js',
+					'<%= library.build %>/tn-extensions-templates-only.js'
+				],
+				dest: '<%= library.build %>/tn-extensions-full.js'
 			}
 		}
 	});
 
 	require('load-grunt-tasks')(grunt);
 
-	grunt.registerTask('build', [
-		'concat:build'
-	]);
+	//grunt.registerTask('build', [
+	//	'uglify:build',
+	//]);
 
-	grunt.registerTask('dev-watch', [
-		'watch:development'
+	grunt.registerTask('default', [
+		'watch'
 	]);
 };

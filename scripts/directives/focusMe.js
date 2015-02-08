@@ -1,10 +1,9 @@
-define([
-	''
-], function() {
-	var focusMe = ['$timeout', '$parse',
+angular.module('tn.extensions.directClick', [])
+	.directive('tnDirectClick', ['$timeout', '$parse',
 		function($timeout, $parse) {
 			return {
-				//scope: true,   // optionally create a child scope
+				// optionally create a child scope that inherits from parent scope
+				//scope: true,
 				link: function(scope, element, attrs) {
 					var model = $parse(attrs.focusMe);
 
@@ -26,7 +25,4 @@ define([
 				}
 			};
 		}
-	];
-
-	return focusMe;
-});
+	]);

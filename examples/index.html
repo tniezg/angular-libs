@@ -1,20 +1,19 @@
 <!doctype html>
-<html ng-controller="baseController">
+<html ng-app="app">
     <head>
         <title>Angular Libs</title>
         <script src="http://localhost:35729/livereload.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="css/layout.css">
     </head>
-    <body>
+    <body ng-controller="baseController">
         <div class="page">
             <header>
                 <h1>Tiny Angular extensions</h1>
                 <h2>Module name: tn.extensions</h2>
             </header>
             <div id="focusMe"
-                class="panel"
-                ng-controller="focusMeController">
+                class="panel">
                 <h3><i class="fa fa-link"></i><a href="#focusMe">service: tnFocusMe</a></h3>
                 <button ng-click="focused=true">Focus the input field</button>
                 <input type="text" placeholder="Input focused when button clicked">
@@ -57,22 +56,32 @@
                 <h4>Storage contents: {{options.configObject}}</h4>
             </div>
         </div>
+
+
+
+
+
+
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/requirejs/require.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <!-- endbower -->
-        <!-- manually input paths -->
-        <script data-main="./scripts/app.js" src="./bower_components/requirejs/require.js"></script>
-        <!-- end manually input paths -->
+
         <!-- injector:js -->
-        <script src="../scripts/directives/actionPopup.js"></script>
-        <script src="../scripts/directives/directClick.js"></script>
-        <script src="../scripts/directives/focusMe.js"></script>
-        <script src="../scripts/directives/imageOnLoad.js"></script>
-        <script src="../scripts/directives/persistentConfig.js"></script>
-        <script src="../scripts/services/localStorage.js"></script>
+        <script src="../build/tn-extensions-full.js"></script>
+        <script src="scripts/modules/app.js"></script>
+        <script src="scripts/controllers/baseController.js"></script>
+        <script src="scripts/controllers/directClickExampleController.js"></script>
+        <script src="scripts/controllers/localStorageExampleController.js"></script>
+        <script src="scripts/controllers/persistentConfigExampleController.js"></script>
         <!-- endinjector -->
+
+
+
+
+        
+        
+
     </body>
 </html>

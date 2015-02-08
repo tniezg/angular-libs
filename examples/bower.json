@@ -1,0 +1,13 @@
+{
+  "name": "Project",
+  "version": "0.0.1",
+  "main": "",
+  "dependencies": {
+    "angular": "1.2.14",
+    "jquery": "2.1.0",
+    "less_libs": "https://github.com/tniezg/less_libs.git",
+    "font-awesome": "~4.0.3",
+    "angular-ui-router": "~0.2.10",
+    "less-elements": "*"
+  }
+}

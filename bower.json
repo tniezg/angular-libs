@@ -1,5 +1,5 @@
 {
-	"name": "AngularExtensions",
+	"name": "angular-tn-extensions",
 	"version": "0.0.8",
 	"ignore": [
 		"bower.json",
@@ -9,7 +9,7 @@
 		".gitignore",
 		"app"
 	],
-	"main": "build/tn-extenstions-templates.js",
+	"main": "build/tn-extensions-templates.js",
 	"dependencies": {
 		"jquery": ">=2.1.0"
 	}
