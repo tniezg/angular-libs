@@ -7,8 +7,14 @@
 			function($scope, tnActionPopup) {
 				var popup = null;
 				$scope.openPopup = function() {
+					$scope.onClose = function() {
+						console.log('#onClose');
+					};
+
 					popup = tnActionPopup.open({
-						contentTemplate: 'views/actionPopupExampleContent.html'
+						contentTemplate: 'views/actionPopupExampleContent.html',
+						scope: $scope,
+						onCloseExpression: 'onClose()'
 					});
 				};
 			}

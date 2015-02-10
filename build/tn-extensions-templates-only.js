@@ -2,7 +2,7 @@ angular.module('tn.extensions.templates', ['template/tn/actionPopup/actionPopupT
 
 angular.module("template/tn/actionPopup/actionPopupTemplate.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/tn/actionPopup/actionPopupTemplate.html",
-    "<div class=\"tn-action-popup-window\">\n" +
+    "<div class=\"tn-action-popup-window\" tn-direct-click=\"close()\">\n" +
     "    <div class=\"tn-action-popup-window-content\" ng-transclude></div>\n" +
     "</div>");
 }]);

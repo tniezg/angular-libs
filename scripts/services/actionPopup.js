@@ -61,22 +61,31 @@ angular.module('tn.extensions.actionPopup', [])
 					var defaults = {
 						windowTemplate: 'template/tn/actionPopup/actionPopupTemplate.html',
 						contentTemplate: null,
-						scope: null
+						scope: null,
+						closeFunctionName: 'close'
 					};
 					var options = angular.element.extend({}, defaults, customOptions);
 					var windowTemplateString = null;
 					var contentTemplateString = null;
 					var $windowReference = null;
+					var $window;
+					var windowScope;
 
-					if (options.scope === null) {
-						options.scope = $rootScope.$new(true);
+					function close() {
+
+						if ($window) {
+							$window.remove();
+						}
+
+						if (windowScope) {
+							windowScope.$destroy();
+						}
 					}
 
 					if (options.contentTemplate) {
 						$templateRequest(options.windowTemplate, true)
 							.then(function(data) {
 								windowTemplateString = data;
-
 								return $templateRequest(options.contentTemplate, true);
 							}, function() {
 								windowTemplateString = '';
@@ -87,21 +96,43 @@ angular.module('tn.extensions.actionPopup', [])
 								contentTemplateString = '';
 							})
 							.then(function() {
-								$compile(windowTemplateString)(
-									options.scope,
-									function($clone, scope) {
-										angular.element('body').append($clone);
-									}, {
+								$window = angular.element(windowTemplateString);
+
+								// create new scope for whole popup, inheriting from 
+								// provided or $rootScope
+								if (options.scope === null) {
+									windowScope = $rootScope.$new(true);
+								} else {
+									windowScope = options.scope.$new();
+								}
+
+								windowScope[options.closeFunctionName] = function() {
+									close();
+								};
+
+								windowScope.$on('$destroy', function() {
+									$window.remove();
+								});
+
+
+								angular.element('body').append($window);
+
+								$compile($window)(
+									windowScope,
+									null, {
 										parentBoundTranscludeFn: function(scope, callback) {
-											callback(angular.element(contentTemplateString), options.scope.$new());
+											var $transcluded = angular.element(contentTemplateString);
+											var transludedScope = windowScope.$new();
+
+											$compile($transcluded)(transludedScope);
+
+											callback($transcluded, transludedScope);
 										}
 									}
 								);
 							});
 						return {
-							close: function() {
-
-							}
+							close: close
 						};
 					}
 				}

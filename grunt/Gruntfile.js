@@ -55,7 +55,8 @@ module.exports = function(grunt) {
 			},
 			refreshOnly: {
 				files: [
-					'<%= example.app %>/index.html'
+					'<%= example.app %>/index.html',
+					'<%= example.app %>/views/**/*.html'
 				],
 				tasks: []
 			},
