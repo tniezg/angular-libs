@@ -2,8 +2,12 @@ angular.module('tn.extensions.directClick', [])
 	.directive('tnDirectClick', [
 		'$parse',
 		function($parse) {
+			'use strict';
+
 			return {
-				controller: function($scope, $element, $attrs) {
+				controller: ['$scope', '$element', '$attrs', function($scope, $element,
+					$attrs) {
+
 					$element.on('click', function(event) {
 						$scope.$apply(function() {
 
@@ -12,7 +16,7 @@ angular.module('tn.extensions.directClick', [])
 							}
 						});
 					});
-				}
-			}
+				}]
+			};
 		}
 	]);

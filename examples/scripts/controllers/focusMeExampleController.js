@@ -2,10 +2,10 @@
 	'use strict';
 
 	angular.module('app').controller(
-		'directClickExampleController', [
+		'focusMeExampleController', [
 			'$scope',
 			function($scope) {
-				$scope.valueIncreasedWithDirectClick = 0;
+				$scope.focused = false;
 			}
 		]
 	);

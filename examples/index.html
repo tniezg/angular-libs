@@ -4,38 +4,38 @@
         <title>Angular Libs</title>
         <script src="http://localhost:35729/livereload.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <link rel="stylesheet" type="text/css" href="../styles/style.css">
+        <link rel="stylesheet" type="text/css" href="styles/layout.css">
     </head>
     <body ng-controller="baseController">
         <div class="page">
             <header>
-                <h1>Tiny Angular extensions</h1>
+                <h1>Angular extensions</h1>
                 <h2>Module name: tn.extensions</h2>
             </header>
+            <div id="actionPopup" 
+                class="panel"
+                ng-controller="actionPopupExampleController">
+                <h3><i class="fa fa-link"></i><a href="#actionPopup">directive: tnActionPopup</a></h3>
+                <button ng-click="openPopup()">Open popup</button>
+            </div>
             <div id="focusMe"
+                ng-controller="focusMeExampleController"
                 class="panel">
                 <h3><i class="fa fa-link"></i><a href="#focusMe">service: tnFocusMe</a></h3>
-                <button ng-click="focused=true">Focus the input field</button>
-                <input type="text" placeholder="Input focused when button clicked">
+                <button ng-click="focused = true">Focus the input field (is focused now: {{focused}})</button>
+                <input tn-focus-me="focused" type="text" placeholder="Input focused when button clicked">
             </div>
             <div id="directClick"
                 class="panel" 
-                ng-controller="directClickExampleController" 
-                ng-init="valueIncreasedWithDirectClick=0">
-                <h3><i class="fa fa-link"></i><a href="#directClick">directive: tn-direct-click</a></h3>
-                <div tn-direct-click="valueIncreasedWithDirectClick=valueIncreasedWithDirectClick+1" 
+                ng-controller="directClickExampleController">
+                <h3><i class="fa fa-link"></i><a href="#directClick">directive: tnDirectClick</a></h3>
+                <div tn-direct-click="valueIncreasedWithDirectClick = valueIncreasedWithDirectClick + 1" 
                     style="background:green;color:white;display:inline-block;padding:10px;cursor:pointer">
                     Click me directly
                     <button>Child, won't increase counter</button>
                 </div>
                 <h4>Number of direct clicks: {{valueIncreasedWithDirectClick}}</h4>
-            </div>
-            <div id="actionPopup" 
-                class="panel">
-                <h3><i class="fa fa-link"></i><a href="#actionPopup">directive: tn-action-popup</a></h3>
-                <div tn-action-popup="true">
-                    ACTION
-                </div>
             </div>
             <div id="localStorage"
                 class="panel" 
@@ -51,7 +51,7 @@
                 class="panel" 
                 ng-controller="persistentConfigExampleController">
                 <h3><i class="fa fa-link"></i><a href="#persistentConfig">service: tnPersistentConfig</a></h3>
-                <pre>{"name":"<input ng-model="options.name" type="text">", "surname": "<input ng-model="options.surname" type="text">"}</pre>
+                <pre>tnPersistentConfigMap: {"name":"<input ng-model="options.name" type="text">", "surname": "<input ng-model="options.surname" type="text">"}</pre>
                 <br><br>
                 <h4>Storage contents: {{options.configObject}}</h4>
             </div>
@@ -71,8 +71,10 @@
         <!-- injector:js -->
         <script src="../build/tn-extensions-full.js"></script>
         <script src="scripts/modules/app.js"></script>
+        <script src="scripts/controllers/actionPopupExampleController.js"></script>
         <script src="scripts/controllers/baseController.js"></script>
         <script src="scripts/controllers/directClickExampleController.js"></script>
+        <script src="scripts/controllers/focusMeExampleController.js"></script>
         <script src="scripts/controllers/localStorageExampleController.js"></script>
         <script src="scripts/controllers/persistentConfigExampleController.js"></script>
         <!-- endinjector -->

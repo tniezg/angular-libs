@@ -1,9 +1,8 @@
-'use strict';
-
 angular.module('tn.extensions.localStorage', [])
 	.factory('tnLocalStorage', [
-
 		function() {
+			'use strict';
+
 			var localRef = window.localStorage;
 
 			function put(key, value) {
@@ -15,7 +14,7 @@ angular.module('tn.extensions.localStorage', [])
 			}
 
 			function remove(key) {
-				var value = undefined;
+				var value;
 
 				value = localRef[key];
 				localRef.removeItem(key);

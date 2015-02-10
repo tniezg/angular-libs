@@ -1,4 +1,4 @@
-angular.module('tn.extensions.actionPopup', [])
+angular.module('tn.extensions.imageOnLoad', [])
 	.directive('tnImageOnLoad', ['$parse',
 		function($parse) {
 			return {

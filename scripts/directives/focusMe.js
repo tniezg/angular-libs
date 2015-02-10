@@ -1,14 +1,15 @@
-angular.module('tn.extensions.directClick', [])
-	.directive('tnDirectClick', ['$timeout', '$parse',
+angular.module('tn.extensions.focusMe', [])
+	.directive('tnFocusMe', ['$timeout', '$parse',
 		function($timeout, $parse) {
+			'use strict';
+
 			return {
 				// optionally create a child scope that inherits from parent scope
 				//scope: true,
 				link: function(scope, element, attrs) {
-					var model = $parse(attrs.focusMe);
+					var model = $parse(attrs.tnFocusMe);
 
 					scope.$watch(model, function(value) {
-						console.log('value=', value);
 
 						if (value === true) {
 							$timeout(function() {
@@ -16,10 +17,8 @@ angular.module('tn.extensions.directClick', [])
 							});
 						}
 					});
-					// to address @blesh's comment, set attribute value to 'false'
-					// on blur event:
+
 					element.bind('blur', function() {
-						console.log('blur');
 						scope.$apply(model.assign(scope, false));
 					});
 				}

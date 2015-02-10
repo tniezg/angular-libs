@@ -9,7 +9,7 @@
 		".gitignore",
 		"app"
 	],
-	"main": "build/tn-extensions-templates.js",
+	"main": "build/tn-extensions-full.js",
 	"dependencies": {
 		"jquery": ">=2.1.0"
 	}

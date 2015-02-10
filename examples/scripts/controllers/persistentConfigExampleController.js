@@ -2,8 +2,7 @@
 	'use strict';
 
 	angular.module('app').controller(
-		'persistentConfigExampleController', [
-			'tnPersistentConfig', '$scope',
+		'persistentConfigExampleController', ['tnPersistentConfig', '$scope',
 			function(configObject, $scope) {
 				$scope.options = {
 					name: configObject.name,

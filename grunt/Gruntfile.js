@@ -17,20 +17,34 @@ module.exports = function(grunt) {
 		library: {
 			templates: '../template',
 			scripts: '../scripts',
-			build: '../build'
+			build: '../build',
+			styles: '../styles'
 		},
 
 
 
-		less: {
-			example: {
-				src: [
-					'<%= example.app %>/css/layout.less'
-				],
-				dest: '<%= example.app %>/css/layout.css',
+		compass: {
+			build: {
 				options: {
-					compress: true
+					sassDir: '<%= library.styles %>',
+					cssDir: '<%= library.styles %>'
 				}
+			},
+			example: {
+				options: {
+					sassDir: '<%= example.app %>/styles',
+					cssDir: '<%= example.app %>/styles'
+				}
+			}
+		},
+		autoprefixer: {
+			build: {
+				expand: true,
+				src: '<%= library.styles %>/*.css'
+			},
+			example: {
+				expand: true,
+				src: '<%= example.app %>/styles/*.css'
 			}
 		},
 		watch: {
@@ -46,24 +60,39 @@ module.exports = function(grunt) {
 				tasks: []
 			},
 			buildLibrary: {
-
-			},
-			buildTemplates: {
 				files: [
-					'<%= library.templates %>/**/*',
+					'<%= library.scripts %>/**/*.js'
 				],
 				tasks: [
-					'html2js:templates',
 					'uglify:build',
 					'uglify:buildWithTemplates'
 				]
 			},
-			buildExampleStyle: {
+			buildTemplates: {
 				files: [
-					'<%= example.app %>/**/*.less'
+					'<%= library.templates %>/**/*'
 				],
 				tasks: [
-					'less:example'
+					'html2js:templates',
+					'uglify:buildWithTemplates'
+				]
+			},
+			buildLibraryStyle: {
+				files: [
+					'<%= library.styles %>/**/*.{scss,sass}'
+				],
+				tasks: [
+					'compass:build',
+					'autoprefixer:build'
+				]
+			},
+			buildExampleStyle: {
+				files: [
+					'<%= example.app %>/styles/**/*.{scss,sass}'
+				],
+				tasks: [
+					'compass:example',
+					'autoprefixer:example'
 				]
 			},
 			injectBowerScripts: {
@@ -87,6 +116,9 @@ module.exports = function(grunt) {
 		html2js: {
 			templates: {
 				options: {
+					//rename: function(moduleName) {
+					//	return 'tn/' + moduleName;
+					//},
 					base: '../',
 					module: 'tn.extensions.templates'
 				},
@@ -135,19 +167,19 @@ module.exports = function(grunt) {
 			},
 			build: {
 				src: [
-					'<%= library.scripts %>/module.js',
-					'<%= library.scripts %>/directives/*.js',
-					'<%= library.scripts %>/services/*.js'
+					'<%= library.scripts %>/directives/**/*.js',
+					'<%= library.scripts %>/services/**/*.js',
+					'<%= library.scripts %>/module.js'
 				],
 				dest: '<%= library.build %>/tn-extensions-no-templates.js'
 			},
 			// all paths provided for source map to work
 			buildWithTemplates: {
 				src: [
-					'<%= library.scripts %>/module.js',
-					'<%= library.scripts %>/directives/*.js',
-					'<%= library.scripts %>/services/*.js',
-					'<%= library.build %>/tn-extensions-templates-only.js'
+					'<%= library.scripts %>/directives/**/*.js',
+					'<%= library.scripts %>/services/**/*.js',
+					'<%= library.build %>/tn-extensions-templates-only.js',
+					'<%= library.scripts %>/module.js'
 				],
 				dest: '<%= library.build %>/tn-extensions-full.js'
 			}
