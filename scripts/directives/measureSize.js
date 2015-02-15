@@ -24,9 +24,7 @@ angular.module('tn.extensions.measureOnResize', [])
 
 					function notifyChange() {
 						scope.$apply(function() {
-							setTimeout(function() {
-								$parse(attributes.tnMeasureOnResize)(scope, getSize());
-							});
+							$parse(attributes.tnMeasureOnResize)(scope, getSize());
 						});
 					}
 
@@ -46,7 +44,9 @@ angular.module('tn.extensions.measureOnResize', [])
 						$window.off('scroll', onScroll);
 					});
 
-					$parse(attributes.tnMeasureOnResizeInit)(scope, getSize());
+					setTimeout(function() {
+						$parse(attributes.tnMeasureOnResizeInit)(scope, getSize());
+					});
 				}
 			};
 		}
