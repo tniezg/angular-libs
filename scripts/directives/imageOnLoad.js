@@ -1,6 +1,8 @@
 angular.module('tn.extensions.imageOnLoad', [])
 	.directive('tnImageOnLoad', ['$parse',
 		function($parse) {
+			'use strict';
+
 			return {
 				restrict: 'A',
 				link: function(scope, element, attrs) {
@@ -14,14 +16,11 @@ angular.module('tn.extensions.imageOnLoad', [])
 
 							newImg.onload = function() {
 								scope.$apply(function() {
-									var height = newImg.height,
-										width = newImg.width;
-
 									$parse(attrs.imageOnLoad)(scope);
 
 									element.attr('src', newValue);
 								});
-							}
+							};
 
 							newImg.src = newValue;
 						}

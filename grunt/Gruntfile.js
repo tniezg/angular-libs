@@ -1,15 +1,6 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	// var sourcePath = '../examples';
-	// var buildPath = '../build';
-	// var scriptsPath = '../scripts';
-	// var cssPath = sourcePath + '/css';
-	// var destinationCssPath = cssPath + '/layout.css';
-	// var templatesPath = '../template';
-	// var servicesPath = scriptsPath + '/services';
-	// var sourceIndex = sourcePath + '/index.html';
-
 	grunt.initConfig({
 		example: {
 			app: '../examples',
@@ -51,7 +42,7 @@ module.exports = function(grunt) {
 			options: {
 				atBegin: true,
 				interrupt: true,
-				livereload: true
+				livereload: 35728
 			},
 			refreshOnly: {
 				files: [

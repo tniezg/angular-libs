@@ -5,5 +5,6 @@ angular.module('tn.extensions', [
 	'tn.extensions.directClick',
 	'tn.extensions.localStorage',
 	'tn.extensions.imageOnLoad',
-	'tn.extensions.persistentConfig'
+	'tn.extensions.persistentConfig',
+	'tn.extensions.bulkImageLoader'
 ]);
