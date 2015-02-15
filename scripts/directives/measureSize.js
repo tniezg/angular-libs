@@ -45,7 +45,9 @@ angular.module('tn.extensions.measureOnResize', [])
 					});
 
 					setTimeout(function() {
-						$parse(attributes.tnMeasureOnResizeInit)(scope, getSize());
+						scope.$apply(function() {
+							$parse(attributes.tnMeasureOnResizeInit)(scope, getSize());
+						});
 					});
 				}
 			};
