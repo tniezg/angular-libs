@@ -24,7 +24,9 @@ angular.module('tn.extensions.measureOnResize', [])
 
 					function notifyChange() {
 						scope.$apply(function() {
-							$parse(attributes.tnMeasureOnResize)(scope, getSize());
+							setTimeout(function() {
+								$parse(attributes.tnMeasureOnResize)(scope, getSize());
+							});
 						});
 					}
 
