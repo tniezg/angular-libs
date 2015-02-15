@@ -16,7 +16,6 @@ angular.module('tn.extensions.actionPopup', [])
 					var options = angular.element.extend({}, defaults, customOptions);
 					var windowTemplateString = null;
 					var contentTemplateString = null;
-					var $windowReference = null;
 					var $window;
 					var windowScope;
 

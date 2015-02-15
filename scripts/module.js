@@ -6,5 +6,6 @@ angular.module('tn.extensions', [
 	'tn.extensions.localStorage',
 	'tn.extensions.imageOnLoad',
 	'tn.extensions.persistentConfig',
-	'tn.extensions.bulkImageLoader'
+	'tn.extensions.bulkImageLoader',
+	'tn.extensions.measureOnResize'
 ]);

@@ -13,11 +13,43 @@
                 <h1>Angular extensions</h1>
                 <h2>Module name: tn.extensions</h2>
             </header>
+            <div id="bulkImageLoaderFullscreen"
+                class="panel"
+                ng-controller="bulkImageLoaderExampleController">
+                <h3><i class="fa fa-link"></i><a href="#bulkImageLoaderFullscreen">service: tnBulkImageLoader</a></h3>
+                uses browser caching, so turn of any plugins that disable it for correct results<br>
+                <input type="text" 
+                    placeholder="image url" 
+                    ng-model="imageLoaderOptions.imageUrls[0]">
+                <input type="text" 
+                    placeholder="image url" 
+                    ng-model="imageLoaderOptions.imageUrls[1]">
+                <button ng-click="downloadImages()" type="button">download all images</button>
+                <div>
+                    <div ng-repeat="url in imageLoaderOptions.loadedUrls">
+                        <img ng-src="{{url}}">
+                        <span>loaded url: {{url}}</span>
+                    </div>
+                </div>
+            </div>
+            <div id="measureSize"
+                class="panel"
+                ng-controller="measureSizeExampleController">
+                <h3><i class="fa fa-link"></i><a href="#actionPopup">directive: tnMeasureOnResize</a></h3>
+                <div style="width: 80%; margin: auto; background: lightblue; height: 200px; line-height: 200px; text-align: center"
+                    tn-measure-on-resize="onButtonResize(width, height, top, left, relativeTop, relativeLeft)" 
+                    tn-measure-on-resize-init="onButtonResize(width, height, top, left, relativeTop, relativeLeft)">
+                    {{measureOptions}}
+                </div>
+            </div>
             <div id="actionPopup" 
                 class="panel"
                 ng-controller="actionPopupExampleController">
                 <h3><i class="fa fa-link"></i><a href="#actionPopup">directive: tnActionPopup</a></h3>
                 <button ng-click="openPopup()">Open popup</button>
+                <button tn-measure-on-resize="onButtonResize(width, height, relativeTop, relativeLeft)" 
+                    tn-measure-on-resize-init="onButtonResize(width, height, relativeTop, relativeLeft)" 
+                    ng-click="openTooltip()">Open tooltip</button>
             </div>
             <div id="focusMe"
                 ng-controller="focusMeExampleController"
@@ -76,9 +108,11 @@
         <script src="scripts/controllers/actionPopupExampleController.js"></script>
         <script src="scripts/controllers/actionPopupWindowExampleController.js"></script>
         <script src="scripts/controllers/baseController.js"></script>
+        <script src="scripts/controllers/bulkImageLoaderExampleController.js"></script>
         <script src="scripts/controllers/directClickExampleController.js"></script>
         <script src="scripts/controllers/focusMeExampleController.js"></script>
         <script src="scripts/controllers/localStorageExampleController.js"></script>
+        <script src="scripts/controllers/measureSizeExampleController.js"></script>
         <script src="scripts/controllers/persistentConfigExampleController.js"></script>
         <!-- endinjector -->
 

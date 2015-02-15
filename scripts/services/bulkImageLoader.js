@@ -1,9 +1,10 @@
 (function(BulkImageLoader) {
+	'use strict';
+
 	angular.module('tn.extensions.bulkImageLoader', [])
 		.factory('tnBulkImageLoader', [
 			'$rootScope',
 			function($rootScope) {
-				'use strict';
 
 				function BulkLoaderService() {
 					this._bulkImageLoader = new BulkImageLoader();
@@ -32,8 +33,10 @@
 					callback) {
 
 					var localCallbackReplacement = function() {
+						var responseArguments = arguments;
+
 						$rootScope.$apply(function() {
-							callback();
+							callback.apply(null, responseArguments);
 						});
 					};
 
@@ -44,6 +47,10 @@
 					});
 
 					return localCallbackReplacement;
+				};
+
+				BulkLoaderService.prototype.load = function(imageUrl) {
+					this._bulkImageLoader.load(imageUrl);
 				};
 
 				BulkLoaderService.prototype.off = function(eventName, callback) {

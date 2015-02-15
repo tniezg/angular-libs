@@ -15,4 +15,15 @@
         border-radius: 3px;
         border: 1px solid #f1f1f1;
     }
+    .tn-action-tooltip-window-content {
+        position: absolute;
+        & > div {
+            position: absolute;
+            right: 0;
+            background: #fbfbfb;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #f1f1f1;
+        }
+    }
 }
