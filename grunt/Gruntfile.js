@@ -98,7 +98,7 @@ module.exports = function(grunt) {
 			injectExampleScripts: {
 				files: [
 					'<%= example.app %>/scripts/**/*.js',
-					'<%= example.build =>/tn-extensions-full.js'
+					'<%= example.build %>/tn-extensions-full.js'
 				],
 				tasks: [
 					'injector:example'
