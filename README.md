@@ -1,19 +1,125 @@
-#*WIP*
----
----
----
-
-#AngularJS directives and services
+#AngularJS directives and services with examples
 
 ##Contents
-* [AutomaticResize](#automatic_resize)
-* [DelayedInput](#delayed_input)
-* [Disqus](#disqus)
-* [GetResizeWidth](#get_resize_width)
-* [PreventDefaultClick](#prevent_default_click)
+* [Bulk Image Loader](#tnBulkImageLoader)
+* [Measure On Resize](#tnMeasureOnResize)
+* [Action Popup](#tnActionPopup)
+* [Direct Click](#tnDirectClick)
+* [Local Storage](#tnLocalStorage)
+* [PersistentConfig](#tnPersistentConfig)
 
 
-##<a id="automatic_resize"></a>AutomaticResize
+##<a id="tnBulkImageLoader"></a>Bulk Image Loader (service)
+Allows preloading of multiple images at once in the background. Provides events on image load success and error.
+
+###In a controller or directive:
+```javascript
+angular.module('app').controller(
+    'ExampleCtrl', [
+        'tnBulkImageLoader', '$scope',
+        function(tnBulkImageLoader, $scope) {
+            function onImageLoad(information) {
+				// do something on image load
+            }
+
+            $scope.downloadImages = function() {
+                tnBulkImageLoader.load([
+                    'images/bulk-loader-1.jpg',
+                    'images/bulk-loader-2.jpg'
+                ]);
+
+                tnBulkImageLoader.on('imageLoadDone', onImageLoad);
+            };
+        }
+    ]
+);
+```
+
+##<a id="tnMeasureOnResize"></a>Measure On Resize (directive)
+Gets element's position and dimensions on browser window size changes and page scroll.
+
+###In a view:
+```html
+<div tn-measure-on-resize="onResize(width, height, top, left, relativeTop, relativeLeft)" tn-measure-on-resize-init="onResize(width, height, top, left, relativeTop, relativeLeft)"></div>
+```
+
+##<a id="tnActionPopup"></a>Action Popup (service)
+Displays a modal popup (by default) that can be populated with content.
+
+###In a controller or directive:
+```javascript
+angular.module('app').controller(
+    'ExampleCtrl', [
+        '$scope', 'tnActionPopup',
+        function($scope, tnActionPopup) {
+            popup = tnActionPopup.open({
+                contentTemplate: 'views/actionPopupExampleContent.html',
+                scope: $scope
+            });
+        }
+    ]
+);
+```
+
+##<a id="tnDirectClick"></a>Direct Click (directive)
+Variation of ng-click reacting only when tag with attached directive is clicked, not it's children.
+
+###In a view:
+```html
+<div tn-direct-click="valueIncreasedWithDirectClick = valueIncreasedWithDirectClick + 1">
+    Click me directly
+    <button>Can't click me</button>
+</div>
+```
+
+##<a id="tnLocalStorage"></a>Local Storage (service)
+Adapter for native localStorage.
+
+###In a controller or service:
+```javascript
+angular.module('app').controller(
+    'ExampleCtrl', [
+        'tnLocalStorage', '$scope',
+        function(tnLocalStorage, $scope) {
+
+            $scope.put = function() {
+                tnLocalStorage.put('name', 'Foo');
+            };
+
+            $scope.remove = function() {
+                tnLocalStorage.remove('name');
+            };
+
+            $scope.get = function() {
+                return tnLocalStorage.get('name');
+            };
+        }
+    ]
+);
+```
+
+##<a id="tnPersistentConfig"></a>PersistentConfig (service)
+Provides a convenient and concise method of saving information to localStorage.
+
+###In a controller or service:
+```javascript
+angular.module('app').controller(
+    'ExampleCtrl', [
+        'tnPersistentConfig', '$scope',
+        function(configObject, $scope) {
+            configObject.name = 'Tom';
+            configObject.country = 'Poland';
+        }
+    ]
+);
+```
+
+
+
+
+
+
+<!--##<a id="automatic_resize"></a>AutomaticResize
 
 Extends ngModel to enable automatic resizing of input fields horizontally based on contents.
 
@@ -87,4 +193,4 @@ module.directive('preventDefaultClick', preventDefaultClick);
 ###In a view:
 ```html
 <a href="someurl.com" prevent-default-click="expression_to_evaluate()" target="_blank">link</a>
-```
+```-->
